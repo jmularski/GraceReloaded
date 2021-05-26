@@ -1,3 +1,5 @@
+/// <reference types="cypress" />s
+
 const sendMessage = (text) => {
     cy.get("#messageInput").type(text);
     cy.get("#sendMessage").click()

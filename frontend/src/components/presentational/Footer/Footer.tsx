@@ -3,8 +3,7 @@ import PropTypes, { InferProps } from 'prop-types';
 import { FooterContainer, FooterContent } from './styles';
 import { Record } from '../Record';
 import { MessageInput } from '../MessageInput';
-import { IconButton } from '@material-ui/core';
-import SendIcon from '@material-ui/icons/Send';
+import { Send } from '../Send';
 
 export const Footer = ({
     sendMessage
@@ -21,9 +20,7 @@ export const Footer = ({
             <FooterContent>
                 <MessageInput value={message} setValue={setMessage} sendMessage={sendMessageAndClearInput} />
                 <Record />
-                <IconButton aria-label={'send message'} onClick={sendMessageAndClearInput} id="sendMessage">
-                    <SendIcon />
-                </IconButton>
+                <Send sendMessage={sendMessageAndClearInput} />
             </FooterContent>
         </FooterContainer>
     )    

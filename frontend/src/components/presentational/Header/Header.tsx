@@ -3,8 +3,8 @@ import PropTypes, { InferProps } from 'prop-types';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import SearchIcon from '@material-ui/icons/Search';
-import { HeaderContainer, SearchContainer, SearchContainerIcon, ContentContainer, InputContainer } from './styles';
+import { HeaderContainer, ContentContainer } from './styles';
+import { SearchBox } from '../SearchBox';
 
 export const Header = ({
   setSearchValue
@@ -18,16 +18,7 @@ export const Header = ({
             <Typography variant="h6" noWrap>
                 Grace
             </Typography>
-            <SearchContainer>
-                <SearchContainerIcon>
-                    <SearchIcon />
-                </SearchContainerIcon>
-                <InputContainer
-                  placeholder="Search..."
-                  inputProps={{ 'aria-label': 'search' }}
-                  onChange={(event) => setSearchValue(event.target.value)}
-                />
-            </SearchContainer>
+            <SearchBox setSearchValue={setSearchValue}/>
           </ContentContainer>
         </Toolbar>
       </AppBar>

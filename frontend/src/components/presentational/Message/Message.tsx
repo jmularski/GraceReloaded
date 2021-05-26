@@ -8,7 +8,7 @@ export const Message = ({
 }: MessageProps) => {    
     return (
         <MessageContainer isBotMessage={isBotMessage}>
-            <MessageBox isBotMessage={isBotMessage} >
+            <MessageBox isBotMessage={isBotMessage} className="message">
                 {text}
             </MessageBox>
         </MessageContainer>
