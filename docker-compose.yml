@@ -2,7 +2,7 @@ version: '2'
 services:
   grace-server:
     build:
-      context: ./backend
+      context: ./packages/backend
     volumes:
       - ./backend:/grace
     environment: 
@@ -16,7 +16,7 @@ services:
 
   grace-web:
     build: 
-      context: ./frontend
+      context: ./packages/frontend
     ports:
       - "3000:3000"
     volumes:
