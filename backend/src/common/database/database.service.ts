@@ -4,7 +4,7 @@ import { TYPES } from '../di';
 import { Constants } from '../constants';
 import { Logger } from '../logger';
 import { LuisDates } from '../../services/luis/luis.interface';
-import { Database, NodeProperties } from './database.interface';
+import { Database, NodeProperties, SameResults } from './database.interface';
 
 @injectable()
 export class DatabaseService implements Database {
@@ -36,7 +36,6 @@ export class DatabaseService implements Database {
 
         const flattenedData = result.reduce((acc, val) => acc.concat(val), []);
         const nodeData = flattenedData.filter(row => row[0] === returnNode).map(row => row[1]) as Object as Node[];
-        console.log(nodeData);
         return nodeData.map(node => node.properties) as NodeProperties[]; 
     }
 
@@ -130,7 +129,7 @@ export class DatabaseService implements Database {
               + 'match (e)-[:NEXT*0..]->(e2)   '
               + 'match (e2)-[r]-(s)  '
       
-              + 'match (p1:Patient { firstName:$otherName} )   '
+              + 'match (p1:Patient { firstName:$secondName} )   '
               + 'match (p1)-[:HAS_ENCOUNTER]-(ea:Encounter)   '
               + "where apoc.node.degree.in(ea, 'NEXT') = 0   "
               + 'match (ea)-[:NEXT*0..]->(eb)   '
@@ -143,21 +142,25 @@ export class DatabaseService implements Database {
         const encounterlessResults = await this.find(
             'match (p:Patient { firstName:$name} )   '
               + 'match (p)-[r]-(s)  '
-              + 'match (p1:Patient { firstName:$otherName} )   '
+              + 'match (p1:Patient { firstName:$secondName} )   '
               + 'match (p1)-[a]-(b)  '
               + 'WHERE s.'+detailNode+' = b.'+detailNode
               + ' return distinct { det:p.firstName, details: b.'+detailNode +'}',
             { name, secondName }
         );
 
-        if (!encounterlessResults || !encounterResults) {
+        if (!encounterlessResults && !encounterResults) {
             return null;
         }
+        console.log("hi");
 
-        const result = encounterResults.concat(encounterlessResults);
-        
-        console.log(result);
+        const result = [...encounterResults ?? [], ...encounterlessResults ?? []];
+        const flattenedResult = result.reduce((acc, val) => acc.concat(val), []);
+        const nodeData = flattenedResult.map(row => row[1]) as Object as SameResults[];
+        const parsedResult = nodeData.map(row => row.details) as string[]
+        console.log(parsedResult);
+        const deduplicatedResult = Array.from(new Set(parsedResult));
 
-        return result;
+        return deduplicatedResult;
     }
 }

@@ -64,5 +64,5 @@ export class LuisService implements Luis {
 
     parseNames = (entities: Entities): string[] => (entities?.DB_personName?.map(name => name[0]) ?? []);
 
-    parseEntityByKey = (entities: Entities, key: EntityKeys) => (entities?.[key][0] ?? '');
+    parseEntityByKey = (entities: Entities, key: EntityKeys) => (entities?.[key]?.[0] ?? '');
 }
