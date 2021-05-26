@@ -5,7 +5,8 @@ import { Message } from './message.interface';
 import { IMessageContext } from '../../store/message/message.types';
 import { MessageContext } from '../../store/message/message.context';
 
-const client = io('http://localhost:3000/');
+const SERVER_URL = process?.env?.REACT_APP_SERVER ?? "http://localhost:3000/";
+const client = io(SERVER_URL);
 
 export const useSocket = () => {
     const { state, dispatch }: IMessageContext = useContext(MessageContext);
