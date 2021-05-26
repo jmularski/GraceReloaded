@@ -1,4 +1,4 @@
-import { UserMessage } from "../models/UserMessage";
+import { Message } from "../models";
 import { container, TYPES } from "../common/di";
 import { Luis } from "../services/luis";
 import { Constants } from "../common/constants";
@@ -11,14 +11,17 @@ export class MessageService {
     private databaseHelper: DatabaseHelper = new DatabaseHelper();
     private outputHelper: Output = new OutputHelper();
 
-    async getMessages(msg: UserMessage) {
+    async getMessages(msg: Message) {
         const {predictions, entities} = await this.luisService.getPredictions(msg.message);
 
         const result = []
         for (const prediction of predictions) {
             const nodeGetters = this.constants.getNodeMapping(prediction);
 
-            if (!nodeGetters) continue;
+            if (!nodeGetters) {
+                result.push("Couldn't understand your question.");
+                continue
+            }
 
             const data = await this.databaseHelper.getDataFromUserQuery(nodeGetters, entities);
 

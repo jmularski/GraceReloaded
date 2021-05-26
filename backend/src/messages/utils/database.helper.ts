@@ -3,7 +3,11 @@ import { container, TYPES } from "../../common/di";
 import { NodeGetters, DatabaseActions } from "../../common/constants/node.constants";
 import { Entities, Luis } from "../../services/luis/luis.interface";
 
-export class DatabaseHelper  {
+interface Helper {
+    getDataFromUserQuery(nodeGetters: NodeGetters, entities: Entities): Promise<string[] | null>
+}
+
+export class DatabaseHelper implements Helper {
     private luisService: Luis = container.get<Luis>(TYPES.Luis);
     private databaseService: Database = container.get<Database>(TYPES.Database);
 
@@ -39,11 +43,6 @@ export class DatabaseHelper  {
                 if(name.length < 2 || !detailNode) return null;
 
                 return await this.databaseService.getSame(name[0], name[1], detailNode)
-
-            default:
-                console.log(detailNode, entityNode);
-
-                return null;
         }
     }
 }
