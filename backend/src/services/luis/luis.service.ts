@@ -2,7 +2,7 @@ import axios from 'axios';
 import { inject, injectable } from 'inversify';
 import { TYPES } from '../../common/di';
 import { Constants } from '../../common/constants';
-import { LuisResult, Luis, Entities, EntityKeys } from './luis.interface';
+import { LuisResult, Luis, Entities, EntityKeys, LuisDates } from './luis.interface';
 import { Intent } from './luis.dto';
 
 @injectable()
@@ -50,19 +50,20 @@ export class LuisService implements Luis {
         };
     }
 
-    //parseDate(entities: Entities): LuisDates | null {
-    //    if (!('datetimeV2' in entities)) {
-    //        return null;
-    //    }
+    parseDate(entities: Entities): LuisDates | null {
+        const datesParsed = entities?.datetimeV2?.values() ?? null;
+        if (!datesParsed) {
+            return null;
+        }
 
-    //    const datesParsed = entities?.datetimeV2?.values();
-    //    for (const date of datesParsed) {
-    //        return date.values[0].resolution[0];
-    //    }
-      
-    //};
+        for (const date of datesParsed) {
+            return date.values[0].resolution[0];
+        }
+        
+        return null;
+    };
 
     parseNames = (entities: Entities): string[] => (entities?.DB_personName?.map(name => name[0]) ?? []);
 
-    parseEntityByKey = (entities: Entities, key: EntityKeys) => (entities?.[key]?.[0] ?? '');
+    parseEntityByKey = (entities: Entities, key: EntityKeys) => (entities?.[key]?.[0]?.[0] ?? '');
 }

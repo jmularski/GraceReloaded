@@ -1,7 +1,12 @@
 import { Server as SocketServer, Socket } from 'socket.io';
 import { Server } from 'http';
 import { MessageController } from './messages/message.controller';
-import { UserMessage } from './models/UserMessage';
+import { Message } from './models/Message';
+
+const socketChannels = {
+    USER_CHANNEL: 'chatMessage',
+    BOT_CHANNEL: 'userMessage'
+};
 
 export class SocketController {
     private io: SocketServer;
@@ -17,13 +22,13 @@ export class SocketController {
         this.messageController = new MessageController();
     }
 
-    private emit(socket: Socket, msg: UserMessage) {
-        socket.emit('message', {message: msg.message, id: msg.id});
+    private emit(socket: Socket, msg: Message) {
+        socket.emit(socketChannels.BOT_CHANNEL, {message: msg.message, id: msg.id});
     }
 
     public listen() {
         this.io.on('connection', (socket: Socket) => {
-            socket.on('chatMessage', async (msg: UserMessage) => {
+            socket.on(socketChannels.USER_CHANNEL, async (msg: Message) => {
                 const responses = await this.messageController.getMessages(msg);
                 responses.map(response => {
                     console.log("message emitted");

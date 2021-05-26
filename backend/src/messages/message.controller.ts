@@ -1,4 +1,4 @@
-import { UserMessage } from "../models/UserMessage";
+import { Message } from "../models";
 import { MessageService } from "./message.service";
 
 export class MessageController {
@@ -8,7 +8,7 @@ export class MessageController {
         this.messageService = new MessageService();
     }
 
-    async getMessages(msg: UserMessage) {
+    async getMessages(msg: Message) {
         return await this.messageService.getMessages(msg)
     }
 }

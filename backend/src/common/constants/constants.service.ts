@@ -36,11 +36,11 @@ export class ConstantsService implements Constants {
     }
 
     get LUIS_ENDPOINT(): string {
-        return process.env?.LUIS_ENDPOINT ?? 'test';
+        return process.env?.LUIS_ENDPOINT ?? '';
     }
 
     get LUIS_KEY(): string {
-        return process.env?.LUIS_KEY ?? 'test';
+        return process.env?.LUIS_KEY ?? '';
     }
     
     getNodeMapping(intent: string): NodeGetters | undefined {

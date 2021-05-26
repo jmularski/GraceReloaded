@@ -1,3 +1,5 @@
+import { LuisDates } from "./luis.interface";
+
 interface ResultItem {
     score: number;
 }
@@ -6,12 +8,14 @@ export interface Intent extends ResultItem {
     intent: string;
 }
 
-export interface DateValues {
+interface DateResolution {
+    resolution: Array<LuisDates>
+}
+
+interface DateValues {
     values: Array<DateResolution>
 }
 
-export interface DateResolution {
-    resolutions: Array<Date>
-}
-
-export type DateTimeEntity = Generator<DateValues>;
+export interface DateTimeEntity {
+    values(): DateValues[]
+};

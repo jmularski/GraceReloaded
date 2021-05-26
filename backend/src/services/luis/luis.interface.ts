@@ -10,11 +10,11 @@ export enum EntityKeys {
     DB_procedureName = "DB_procedureName"
 }
 
-export type Entities = Partial<Record<EntityKeys, Array<string>> & Record<"datetimeV2", DateTimeEntity | undefined>>;
+export type Entities = Partial<Record<EntityKeys, Array<Array<string>>> & Record<"datetimeV2", DateTimeEntity | undefined>>;
 
 export interface LuisDates {
-    start: Date,
-    end: Date
+    start: string,
+    end: string
 }
 
 export interface LuisResult {
@@ -24,7 +24,7 @@ export interface LuisResult {
 
 export interface Luis {
     getPredictions(text: string): Promise<LuisResult>,
-    //parseDate(entities: Entities): LuisDates | null,
+    parseDate(entities: Entities): LuisDates | null,
     parseNames(entities: Entities): string[],
     parseEntityByKey(entities: Entities, entity: EntityKeys): string
 }
