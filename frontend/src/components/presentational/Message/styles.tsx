@@ -9,7 +9,7 @@ interface MessageDivProps {
 export const MessageBox = style.div<MessageDivProps>`
     background-color: ${({ isBotMessage, theme }) =>  isBotMessage ? theme.botMessages : theme.userMessages };
     color: ${({ isBotMessage }) =>  isBotMessage ? 'black' : 'white' };
-    d: right;
+    min-width: 3vw;
     max-width: 25vw;
     border-radius: 10px;
     padding: 2%;

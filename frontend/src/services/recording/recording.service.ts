@@ -1,19 +1,7 @@
 import { useEffect } from "react";
+import { UseRecording } from "./recording.interface";
 
-declare global {
-    interface Window {
-        SpeechRecognition: any;
-        webkitSpeechRecognition: any;
-        mozSpeechRecognition: any;
-        msSpeechRecognition: any;
-        oSpeechRecognition: any;
-    }
-}
 
-interface UseRecording {
-    startRecording: () => void,
-    stopRecording: () => void
-}
 
 export const useRecording: (setText: ((text: string) => void)) => UseRecording = (setText) => {
 

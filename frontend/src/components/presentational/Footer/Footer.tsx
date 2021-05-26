@@ -6,6 +6,7 @@ import { MessageInput } from '../MessageInput';
 import { Send } from '../Send';
 import { useRecording } from '../../../services/recording/recording.service';
 import { start } from 'repl';
+import { Grid } from '@material-ui/core';
 
 export const Footer = ({
     sendMessage
@@ -29,9 +30,17 @@ export const Footer = ({
     return (
         <FooterContainer elevation={3}>
             <FooterContent>
-                <MessageInput value={message} setValue={setMessage} sendMessage={sendMessageAndClearInput} />
-                <Record toggleRecording={toggleRecording}/>
-                <Send sendMessage={sendMessageAndClearInput} />
+                <Grid container>
+                    <Grid item xs={10}>
+                        <MessageInput value={message} setValue={setMessage} sendMessage={sendMessageAndClearInput}/>
+                    </Grid>
+                    <Grid item xs={1}>
+                        <Record toggleRecording={toggleRecording}/>
+                    </Grid>
+                    <Grid item xs={1}>
+                        <Send sendMessage={sendMessageAndClearInput} />
+                    </Grid>
+                </Grid>
             </FooterContent>
         </FooterContainer>
     )    
