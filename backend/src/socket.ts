@@ -15,7 +15,7 @@ export class SocketController {
     constructor(server: Server) {
         this.io = new SocketServer(server, {
             cors: {
-                origin: 'http://localhost:3001',
+                origin: '*',
                 methods: ['GET', 'POST']
             }
         });

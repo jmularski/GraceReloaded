@@ -1,0 +1,31 @@
+version: '2'
+services:
+  grace-server:
+    build:
+      context: ./backend
+    volumes:
+      - ./backend:/grace
+    environment: 
+      - SERVER_PORT=5000
+    ports:
+      - "5000:5000"
+    networks:
+      - default
+    restart: on-failure
+    mem_limit: 4000m
+
+  grace-web:
+    build: 
+      context: ./frontend
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./frontend:/website
+    environment: 
+      - REACT_APP_SERVER=http://localhost:5000 
+    networks:
+      - default
+    depends_on:
+      - grace-server
+    restart: on-failure
+    mem_limit: 2000m
