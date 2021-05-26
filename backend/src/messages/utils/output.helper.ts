@@ -15,28 +15,33 @@ export class OutputHelper implements Output {
 
     parseDataToOutput({databaseAction, primaryName, returnNode, data}: OutputParams) {
 
+        const stringifiedData = data ? data.join(', ') : null
+
         switch(databaseAction) {
             case DatabaseActions.getNode:
-                return data ?
-                    `The ${returnNode.toLowerCase()} data for this patient is: ${data.join(', ')}` :
-                    `${primaryName} has no data related to any ${returnNode.toLowerCase()}`
+                return stringifiedData ?
+                    `The ${returnNode} data for this patient is: ${stringifiedData}` :
+                    `${primaryName} has no data related to any ${returnNode}`
 
             case DatabaseActions.getVal:
-                return data ?
-                    `The patients with this ${returnNode.toLowerCase()} are: ${data.join(', ')}` :
-                    `No patient have had encounters with ${returnNode.toLowerCase()}`
+                return stringifiedData ?
+                    `The patients with this ${returnNode} are: ${stringifiedData}` :
+                    `No patient have had encounters with ${returnNode}`
 
             case DatabaseActions.getEncounterlessVal:
-                return data ?
-                    `This patients with this ${returnNode.toLowerCase()} are: ${data.join(', ')}` :
-                    `No patient have had encounters with ${returnNode.toLowerCase()}`;
+                return stringifiedData ?
+                    `This patients with this ${returnNode} are: ${stringifiedData}` :
+                    `No patient have had encounters with ${returnNode}`;
 
             case DatabaseActions.getEncounterlessNode:
-                return data ?
-                    `The ${returnNode.toLowerCase()} data for patient ${primaryName} is: ${data}` :
-                    `${primaryName} has no data related to any ${returnNode.toLowerCase()}`;
+                return stringifiedData ?
+                    `The ${returnNode} data for patient ${primaryName} is: ${stringifiedData}` :
+                    `${primaryName} has no data related to any ${returnNode}`;
 
             case DatabaseActions.getSame:
+                return stringifiedData ?
+                    `The matching data for the patients is: ${stringifiedData}` :
+                    'These patient have nothing in common';
 
 
             default:

@@ -10,7 +10,7 @@ export enum EntityKeys {
     DB_procedureName = "DB_procedureName"
 }
 
-export type Entities = Record<EntityKeys, Array<string>> & Record<"datetimeV2", DateTimeEntity | undefined>;
+export type Entities = Partial<Record<EntityKeys, Array<string>> & Record<"datetimeV2", DateTimeEntity | undefined>>;
 
 export interface LuisDates {
     start: Date,
