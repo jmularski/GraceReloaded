@@ -4,7 +4,7 @@ import { Footer } from '../../presentational/Footer';
 import { MessageContext } from '../../../store/message/message.context';
 import { IMessageContext, IMessage } from '../../../store/message/message.types';
 import { addMessage } from '../../../store/message/message.reducer';
-import { useSocket } from '../../../services/socket.service';
+import { useSocket } from '../../../services/socket/socket.service';
 import { MessageList } from '../../presentational/MessageList';
 
 export const Chat = () => {

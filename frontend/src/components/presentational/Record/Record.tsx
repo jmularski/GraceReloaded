@@ -5,6 +5,7 @@ import StopIcon from '@material-ui/icons/Stop';
 
 export const Record = () => {
     const [ isRecording, setIsRecording ] = useState(false);
+    
 
     return (
         <IconButton 
