@@ -2,8 +2,8 @@ import style from 'styled-components';
 import { InputBase } from '@material-ui/core';
 
 export const StyledInput = style(InputBase)`
-    & .MuiInputBase-root {
-        flex: 1;
+    && .MuiInputBase-root {
+        height: 100%
     }
 
     & .MuiInputBase-input {

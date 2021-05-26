@@ -1,16 +1,18 @@
 import React from 'react';
 import PropTypes, { InferProps } from 'prop-types';
-import { MessageContainer } from './styles';
+import { ListContainer, StyledList } from './styles';
 import { Message } from '../Message';
 
 export const MessageList = ({ messages }: MessageListProps) => {
     
     return (
-        <MessageContainer>
-            {messages.map((message) => (
-                <Message text={message?.text ?? ''} isBotMessage={message?.isBotMessage ?? false} />
-            ))}
-        </MessageContainer>
+        <ListContainer>
+            <StyledList>
+                {messages.map((message) => (
+                    <Message text={message?.text ?? ''} isBotMessage={message?.isBotMessage ?? false} />
+                ))}
+            </StyledList>
+        </ListContainer>
     );
 }
 

@@ -14,6 +14,7 @@ export const MessageInput = ({ value, setValue, sendMessage }: MessageInputProps
             onChange={event => setValue(event.target.value)} 
             placeholder="Enter a message..."
             id="messageInput"
+            fullWidth={true}
         />
     )
 }

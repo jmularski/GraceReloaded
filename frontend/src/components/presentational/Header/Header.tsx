@@ -12,7 +12,7 @@ export const Header = ({
 
   return (
     <HeaderContainer>
-      <AppBar position="static">
+      <AppBar position="fixed">
         <Toolbar>
           <ContentContainer>
             <Typography variant="h6" noWrap>
