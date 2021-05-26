@@ -1,0 +1,64 @@
+import { useEffect } from "react";
+
+declare global {
+    interface Window {
+        SpeechRecognition: any;
+        webkitSpeechRecognition: any;
+        mozSpeechRecognition: any;
+        msSpeechRecognition: any;
+        oSpeechRecognition: any;
+    }
+}
+
+interface UseRecording {
+    startRecording: () => void,
+    stopRecording: () => void
+}
+
+export const useRecording: (setText: ((text: string) => void)) => UseRecording = (setText) => {
+
+    // from https://github.com/JamesBrill/react-speech-recognition/blob/master/src/SpeechRecognition.js
+    const DefaultSpeechRecognition =
+        typeof window !== 'undefined' &&
+        (window.SpeechRecognition ||
+            window.webkitSpeechRecognition ||
+            window.mozSpeechRecognition ||
+            window.msSpeechRecognition ||
+            window.oSpeechRecognition)
+
+    const hasSpeechRecognitionCapabilities = !!DefaultSpeechRecognition;
+
+    let recognition: SpeechRecognition;
+    
+    useEffect(() => {
+        if (hasSpeechRecognitionCapabilities) {
+            recognition = new DefaultSpeechRecognition();
+            recognition.continuous = false;
+            recognition.interimResults = false;
+
+            recognition.onresult = (event) => {
+                const current = event.resultIndex;
+                const { transcript } = event.results[current][0];
+        
+                setText(transcript);
+            }
+        }
+    }, [])
+
+    const startRecording = () => {
+        if (recognition) {
+            recognition.start();
+        }
+    }
+    
+    const stopRecording = () => {
+        if (recognition) {
+            recognition.stop();
+        }
+    }
+
+    return {
+        startRecording,
+        stopRecording
+    }
+}
