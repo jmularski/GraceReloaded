@@ -1,0 +1,29 @@
+name: Test
+
+on:
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  test:
+    name: CI pipeline
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: Install modules
+        run: yarn
+      - name: Install cypress
+        run: yarn global add cypress
+      - name: Run tests
+        env:
+          DB_HOST: ${{ secrets.DB_HOST }}
+          DB_USERNAME: ${{ secrets.DB_USERNAME }}
+          DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+          LUIS_ENDPOINT: ${{ secrets.LUIS_ENDPOINT }}
+          LUIS_KEY: ${{ secrets.LUIS_KEY }}
+        run: npm run test:backend
+      - name: Start server
+        run: npm start &
+      - name: Run E2E tests
+        run: npm run test:frontend
