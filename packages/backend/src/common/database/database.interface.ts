@@ -1,4 +1,4 @@
-import {LuisDates} from '../../services/luis/luis.interface';
+import {LuisDates} from '@Services/luis/luis.interface';
 import {DateTime} from 'neo4j-driver';
 
 export type FindResult = Promise<[string, object][][] | null>;

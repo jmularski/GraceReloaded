@@ -1,4 +1,4 @@
-import {DatabaseActions} from '../../common/constants/node.constants';
+import {DatabaseActions} from '@Common/constants/node.constants';
 
 export interface OutputParams {
     databaseAction: DatabaseActions,

@@ -1,10 +1,10 @@
 import React, {useState} from 'react';
 import PropTypes, {InferProps} from 'prop-types';
 import {FooterContainer, FooterContent} from './styles';
-import {Record} from '../Record';
-import {MessageInput} from '../MessageInput';
-import {Send} from '../Send';
-import {useRecording} from '../../../services/recording/recording.service';
+import {Record} from '@Presentational/Record';
+import {MessageInput} from '@Presentational/MessageInput';
+import {Send} from '@Presentational/Send';
+import {useRecording} from '@Service/recording/recording.service';
 import {Grid} from '@material-ui/core';
 
 export const Footer = ({

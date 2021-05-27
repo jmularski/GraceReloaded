@@ -4,7 +4,7 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import {HeaderContainer, ContentContainer} from './styles';
-import {SearchBox} from '../SearchBox';
+import {SearchBox} from '@Presentational/SearchBox';
 
 export const Header = ({
   setSearchValue,
