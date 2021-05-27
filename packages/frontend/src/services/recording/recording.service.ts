@@ -1,7 +1,6 @@
 import {useEffect} from 'react';
 import {UseRecording} from './recording.interface';
 
-
 export const useRecording: (
     setText: ((text: string) => void)
   ) => UseRecording = (setText) => {

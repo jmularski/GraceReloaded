@@ -1,11 +1,12 @@
 import React, {useContext, useState} from 'react';
-import {Header} from '../../presentational/Header';
-import {Footer} from '../../presentational/Footer';
-import {MessageContext} from '../../../store/message/message.context';
-import {IMessageContext, IMessage} from '../../../store/message/message.types';
-import {addMessage} from '../../../store/message/message.reducer';
-import {useSocket} from '../../../services/socket/socket.service';
-import {MessageList} from '../../presentational/MessageList';
+import {Header} from '@Presentational/Header';
+import {Footer} from '@Presentational/Footer'
+import {MessageList} from '@Presentational/MessageList';
+import {MessageContext} from '@Store/message/message.context';
+import {IMessageContext, IMessage} from '@Store/message/message.types';
+import {addMessage} from '@Store/message/message.reducer';
+import {useSocket} from '@Service/socket/socket.service';
+
 
 export const Chat = () => {
   const {state, dispatch}: IMessageContext = useContext(MessageContext);

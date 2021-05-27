@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes, {InferProps} from 'prop-types';
 import {ListContainer, StyledList} from './styles';
-import {Message} from '../Message';
+import {Message} from '@Presentational/Message';
 
 export const MessageList = ({messages}: MessageListProps) => {
   return (

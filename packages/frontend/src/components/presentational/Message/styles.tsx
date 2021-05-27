@@ -1,5 +1,5 @@
 import style from 'styled-components';
-import {Theme} from '../../../theme';
+import {Theme} from '@App/theme';
 
 interface MessageDivProps {
     isBotMessage: boolean,
