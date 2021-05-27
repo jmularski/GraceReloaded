@@ -1,8 +1,8 @@
 FROM node:latest
-WORKDIR /grace
+WORKDIR /backend
 
 COPY package.json .
-RUN npm install
+RUN yarn
 
 COPY . .
 

@@ -1,17 +1,11 @@
-FROM node:12.2.0-alpine as build-stage
+FROM node:latest
+WORKDIR /frontend
 
-WORKDIR /website
-
-ENV PATH /website/node_modules/.bin:$PATH
-
-COPY package.json /website/package.json
-
-RUN npm config set unsafe-perm true
-RUN npm install -g yarn
-
-RUN yarn --silent
-RUN yarn global add react-scripts@3.0.1 --silent
+COPY package.json .
+RUN yarn
 
 COPY . .
+
+EXPOSE 3000
 
 CMD ["npm", "start"]
