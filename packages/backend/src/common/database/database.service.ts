@@ -40,13 +40,17 @@ export class DatabaseService implements Database {
       return nodeData.map((node) => node.properties) as NodeProperties[];
     }
 
-    private getWantedValuesFromResult(result: [string, object][][], returnNode: string, detailNode: keyof NodeProperties) {      
+    private getWantedValuesFromResult(
+        result: [string, object][][],
+        returnNode: string,
+        detailNode: keyof NodeProperties,
+    ) {
       const parsedResult = this
           .getNodeProperties(result, returnNode)
           .map((properties) => detailNode in properties ? properties?.[detailNode] : null)
           .filter((result) => result !== null) as string[];
 
-      return Array.from(new Set(parsedResult))
+      return Array.from(new Set(parsedResult));
     }
 
     public async find(query: string, parameters: object) {
@@ -70,7 +74,7 @@ export class DatabaseService implements Database {
         name: string,
         wantedNode: string,
         returnNode: string,
-        detailNode: keyof NodeProperties
+        detailNode: keyof NodeProperties,
     ) {
       const result = await this.find(`
             MATCH (p:Patient{firstName:$name})
@@ -93,7 +97,7 @@ export class DatabaseService implements Database {
         wantedEntity: string,
         wantedNode: string,
         returnNode: string,
-        detailNode: keyof NodeProperties
+        detailNode: keyof NodeProperties,
     ) {
       const result = await this.find(`
               MATCH (p:Patient)
@@ -115,7 +119,7 @@ export class DatabaseService implements Database {
         name: string,
         wantedNode: string,
         returnNode: string,
-        detailNode: keyof NodeProperties
+        detailNode: keyof NodeProperties,
     ) {
       const result = await this.find(
           `MATCH (p:Patient{firstName:$name})

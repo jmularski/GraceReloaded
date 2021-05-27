@@ -30,7 +30,7 @@ export class DatabaseHelper implements Helper {
               name[0],
               wantedNode,
               returnNode,
-              detailNode
+              detailNode,
           );
 
         case DatabaseActions.getVal:
@@ -41,7 +41,7 @@ export class DatabaseHelper implements Helper {
               this.luisService.parseEntityByKey(entities, entityNode),
               wantedNode,
               returnNode,
-              detailNode
+              detailNode,
           );
 
         case DatabaseActions.getEncounterlessNode:
@@ -50,7 +50,7 @@ export class DatabaseHelper implements Helper {
               name[0],
               wantedNode,
               returnNode,
-              detailNode
+              detailNode,
           );
 
         case DatabaseActions.getEncounterlessVal:

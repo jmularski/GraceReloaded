@@ -1,6 +1,6 @@
 import React, {useContext, useState} from 'react';
 import {Header} from '@Presentational/Header';
-import {Footer} from '@Presentational/Footer'
+import {Footer} from '@Presentational/Footer';
 import {MessageList} from '@Presentational/MessageList';
 import {MessageContext} from '@Store/message/message.context';
 import {IMessageContext, IMessage} from '@Store/message/message.types';
