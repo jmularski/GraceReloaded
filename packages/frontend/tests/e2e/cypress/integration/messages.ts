@@ -28,7 +28,7 @@ describe('Sending a message', () => {
   });
 
   it('receives a reply', () => {
-    cy.wait(10000);
+    cy.wait(20000);
     cy.get('.message').last().should('contain', data.response);
   });
 });
