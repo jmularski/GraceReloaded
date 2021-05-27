@@ -32,7 +32,7 @@ describe("Database helper spec", () => {
             databaseAction: query,
             wantedNode: "",
             returnNode: "",
-            detailNode: "",
+            detailNode: "details",
             entityNode: EntityKeys.DB_addressName
         }, {});
 

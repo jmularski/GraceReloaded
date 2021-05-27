@@ -40,6 +40,15 @@ export class DatabaseService implements Database {
       return nodeData.map((node) => node.properties) as NodeProperties[];
     }
 
+    private getWantedValuesFromResult(result: [string, object][][], returnNode: string, detailNode: keyof NodeProperties) {      
+      const parsedResult = this
+          .getNodeProperties(result, returnNode)
+          .map((properties) => detailNode in properties ? properties?.[detailNode] : null)
+          .filter((result) => result !== null) as string[];
+
+      return Array.from(new Set(parsedResult))
+    }
+
     public async find(query: string, parameters: object) {
       const session = this.driver.session();
 
@@ -61,6 +70,7 @@ export class DatabaseService implements Database {
         name: string,
         wantedNode: string,
         returnNode: string,
+        detailNode: keyof NodeProperties
     ) {
       const result = await this.find(`
             MATCH (p:Patient{firstName:$name})
@@ -74,13 +84,7 @@ export class DatabaseService implements Database {
 
       if (!result) return null;
 
-      const parsedResult = this
-          .getNodeProperties(result, returnNode)
-          .map((properties) => properties?.description ?? null)
-          .filter((result) => result !== null) as string[];
-      const deduplicatedResult = Array.from(new Set(parsedResult));
-
-      return deduplicatedResult;
+      return this.getWantedValuesFromResult(result, returnNode, detailNode);
     }
 
 
@@ -89,6 +93,7 @@ export class DatabaseService implements Database {
         wantedEntity: string,
         wantedNode: string,
         returnNode: string,
+        detailNode: keyof NodeProperties
     ) {
       const result = await this.find(`
               MATCH (p:Patient)
@@ -97,18 +102,12 @@ export class DatabaseService implements Database {
               MATCH (e)-[:NEXT*0..]->(e2)
               MATCH (e2)-${wantedNode} 
               WHERE ${returnNode}.description = '${wantedEntity}' 
-              ${this.getDateQuery(dates)} RETURN p,${returnNode}`,
+              ${this.getDateQuery(dates)} RETURN p`,
       {});
 
       if (!result) return null;
 
-      const parsedResult = this
-          .getNodeProperties(result, 'p')
-          .map((properties) => properties?.firstName ?? null)
-          .filter((result) => result !== null) as string[];
-      const deduplicatedResult = Array.from(new Set(parsedResult));
-
-      return deduplicatedResult;
+      return this.getWantedValuesFromResult(result, 'p', detailNode);
     }
 
     public async getEncounterlessNode(
@@ -116,6 +115,7 @@ export class DatabaseService implements Database {
         name: string,
         wantedNode: string,
         returnNode: string,
+        detailNode: keyof NodeProperties
     ) {
       const result = await this.find(
           `MATCH (p:Patient{firstName:$name})
@@ -126,12 +126,7 @@ export class DatabaseService implements Database {
 
       if (!result) return null;
 
-      const parsedResult = this
-          .getNodeProperties(result, returnNode)
-          .map((properties) => properties?.address ?? '');
-      const deduplicatedResult = Array.from(new Set(parsedResult));
-
-      return deduplicatedResult;
+      return this.getWantedValuesFromResult(result, returnNode, detailNode);
     }
 
     public async getEncounterlessVal(
@@ -139,24 +134,19 @@ export class DatabaseService implements Database {
         wantedEntity: string,
         wantedNode: string,
         returnNode: string,
-        detailNode: string,
+        detailNode: keyof NodeProperties,
     ) {
       const result = await this.find(
           `MATCH (p:Patient) 
            MATCH (p)-${wantedNode} 
            WHERE ${returnNode}.${detailNode} = '${wantedEntity}' 
-           ${this.getDateQuery(dates)} RETURN p,${returnNode}`,
+           ${this.getDateQuery(dates)} RETURN p`,
           {},
       );
 
       if (!result) return null;
 
-      const parsedResult = this
-          .getNodeProperties(result, 'p')
-          .map((properties) => properties?.firstName ?? '');
-      const deduplicatedResult = Array.from(new Set(parsedResult));
-
-      return deduplicatedResult;
+      return this.getWantedValuesFromResult(result, 'p', 'firstName');
     }
 
     public async getSame(name: string, secondName: string, detailNode: string) {
@@ -194,7 +184,6 @@ export class DatabaseService implements Database {
       const flattenedResult = result.reduce((acc, val) => acc.concat(val), []);
       const nodeData = flattenedResult.map((row) => row[1]) as Object as SameResults[];
       const parsedResult = nodeData.map((row) => row.details) as string[];
-      console.log(parsedResult);
       const deduplicatedResult = Array.from(new Set(parsedResult));
 
       return deduplicatedResult;

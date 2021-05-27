@@ -1,11 +1,12 @@
 /* eslint-disable no-unused-vars */
-import {EntityKeys} from '../../services/luis/luis.interface';
+import {EntityKeys} from '@Services/luis/luis.interface';
+import {NodeProperties} from '@Common/database/database.interface'
 
 export interface NodeGetters {
     databaseAction: DatabaseActions;
     wantedNode: string;
     returnNode: string;
-    detailNode?: string;
+    detailNode: keyof NodeProperties;
     entityNode?: EntityKeys;
 }
 
@@ -22,26 +23,31 @@ export const nodeConstants = new Map<string, NodeGetters>([
     databaseAction: DatabaseActions.getNode,
     wantedNode: '[:HAS_DRUG]-(drug:Drug)',
     returnNode: 'drug',
+    detailNode: 'description'
   }],
   ['getAllergies', {
     databaseAction: DatabaseActions.getNode,
     wantedNode: '[:HAS_ALLERGY]-(allergy:Allergy)',
     returnNode: 'allergy',
+    detailNode: 'description'
   }],
   ['getCarePlan', {
     databaseAction: DatabaseActions.getNode,
     wantedNode: '[:HAS_CARE_PLAN]-(careplan:CarePlan)',
     returnNode: 'carePlan',
+    detailNode: 'description'
   }],
   ['getProcedures', {
     databaseAction: DatabaseActions.getNode,
     wantedNode: '[:HAS_PROCEDURE]-(procedure:Procedure)',
     returnNode: 'procedure',
+    detailNode: 'description'
   }],
   ['getConditions', {
     databaseAction: DatabaseActions.getNode,
     wantedNode: '[:HAS_CONDITION]-(condition:Condition)',
     returnNode: 'condition',
+    detailNode: 'description'
   }],
   ['getAddress', {
     databaseAction: DatabaseActions.getEncounterlessNode,
@@ -60,41 +66,41 @@ export const nodeConstants = new Map<string, NodeGetters>([
     databaseAction: DatabaseActions.getVal,
     wantedNode: '[:HAS_CONDITION]-(condition:Condition)',
     returnNode: 'condition',
-    detailNode: 'description',
+    detailNode: 'firstName',
     entityNode: EntityKeys.DB_conditionName,
   }],
   ['getPatientDrugs', {
     databaseAction: DatabaseActions.getVal,
     wantedNode: '[:HAS_DRUG]-(drug:Drug)',
     returnNode: 'drug',
-    detailNode: 'description',
+    detailNode: 'firstName',
     entityNode: EntityKeys.DB_drugDescription,
   }],
   ['getPatientAllergies', {
     databaseAction: DatabaseActions.getVal,
     wantedNode: '[:HAS_ALLERGY]-(allergy:Allergy)',
     returnNode: 'allergy',
-    detailNode: 'description',
+    detailNode: 'firstName',
     entityNode: EntityKeys.DB_allergyName,
   }],
   ['getPatientCarePlan', {
     databaseAction: DatabaseActions.getVal,
     wantedNode: '[:HAS_CARE_PLAN]-(careplan:CarePlan)',
     returnNode: 'careplan',
-    detailNode: 'description',
+    detailNode: 'firstName',
     entityNode: EntityKeys.DB_carePlanName,
   }],
   ['getPatientProcedures', {
     databaseAction: DatabaseActions.getVal,
     wantedNode: '[:HAS_PROCEDURE]-(procedure:Procedure)',
     returnNode: 'procedure',
-    detailNode: 'description',
+    detailNode: 'firstName',
     entityNode: EntityKeys.DB_procedureName,
   }],
   ['getCommon', {
     databaseAction: DatabaseActions.getSame,
     wantedNode: '',
     returnNode: '',
-    detailNode: 'address',
+    detailNode: 'details',
   }],
 ]);
