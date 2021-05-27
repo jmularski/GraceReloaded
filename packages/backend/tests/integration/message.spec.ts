@@ -1,30 +1,16 @@
-import { Message } from "../../src/models";
+import { MessageService } from "@Messages/message.service";
 
-/* eslint-disable no-undef */
-const io = require("socket.io-client");
-
-const ioOptions = {
-  transports: ["websocket"],
-  forceNew: true,
-  reconnection: false,
-};
-
-const data = {
-  message: "what patients have the condition viral sinusitis (disorder)?",
-  response: "This patients with this condition are: Mr.Aaron697 Brekke496",
-};
+const data = [{
+  message: "What patients have taken drug Loratadine 5 MG Chewable Tablet?",
+  response: "The patients with this drug are: Cristina921, Emile522",
+}];
 
 describe("Chat Events", () => {
-  it("client should receive a correct answer", (done) => {
-    const sender = io("/", ioOptions);
+  const messageService = new MessageService();
 
-    sender.emit("chatMessage", data.message);
-
-    sender.on("message", (msg: Message) => {
-      expect(msg.message).toEqual(data.response);
-    });
-
-    sender.disconnect();
+  it("client should receive a correct answer", async (done) => {
+    const result = await messageService.getMessages({id: 1, message: data.message});
+    expect(result).toEqual([data.response]);
     done();
   });
 });

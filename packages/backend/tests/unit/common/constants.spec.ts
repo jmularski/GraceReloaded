@@ -14,7 +14,7 @@ describe("Constants spec", () => {
         })
 
         it('should return default port', () => {
-            expect(constants.SERVER_PORT).toEqual(3000);
+            expect(constants.SERVER_PORT).toEqual(5000);
         });
 
         it('should return development mode', () => {

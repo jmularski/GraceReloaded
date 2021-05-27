@@ -25,26 +25,29 @@ export interface Database {
         dates: LuisDates | null,
         name: string,
         wantedNode: string,
-        returnNode: string
+        returnNode: string,
+        detailNode: keyof NodeProperties
     ): QueryResult,
     getVal(
         dates: LuisDates | null,
         wantedEntity: string,
         wantedNode: string,
-        returnNode: string
+        returnNode: string,
+        detailNode: keyof NodeProperties
     ): QueryResult,
     getEncounterlessNode(
         dates: LuisDates | null,
         name: string,
         wantedNode: string,
-        returnNode: string
+        returnNode: string,
+        detailNode: keyof NodeProperties
     ): QueryResult,
     getEncounterlessVal(
         dates: LuisDates | null,
         wantedEntity: string,
         wantedNode: string,
         returnNode: string,
-        detailNode: string
+        detailNode: keyof NodeProperties
     ): QueryResult,
     getSame(name: string, secondName: string, detailNode: string): QueryResult
 };
