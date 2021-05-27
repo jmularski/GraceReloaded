@@ -152,8 +152,8 @@ export class DatabaseService implements Database {
       if (!result) return null;
 
       const parsedResult = this
-          .getNodeProperties(result, returnNode)
-          .map((properties) => properties?.address ?? '');
+          .getNodeProperties(result, 'p')
+          .map((properties) => properties?.firstName ?? '');
       const deduplicatedResult = Array.from(new Set(parsedResult));
 
       return deduplicatedResult;

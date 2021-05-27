@@ -5,7 +5,7 @@ import {Message} from '@Models/Message';
 
 const socketChannels = {
   USER_CHANNEL: 'chatMessage',
-  BOT_CHANNEL: 'userMessage',
+  BOT_CHANNEL: 'message',
 };
 
 export class SocketController {
@@ -34,7 +34,6 @@ export class SocketController {
         socket.on(socketChannels.USER_CHANNEL, async (msg: Message) => {
           const responses = await this.messageController.getMessages(msg);
           responses.map((response) => {
-            console.log('message emitted');
             this.emit(socket, {message: response, id: msg.id});
           });
         });

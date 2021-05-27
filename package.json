@@ -4,6 +4,7 @@
 	"description": "Monorepo of Grace Chatbot project",
 	"private": true,
 	"scripts": {
+		"start": "lerna run start",
 		"start:backend": "lerna --scope=backend run start",
 		"start:frontend": "lerna --scope=frontend run start",
 		"test:backend": "lerna --scope=backend run test",

@@ -46,8 +46,8 @@ export const nodeConstants = new Map<string, NodeGetters>([
   ['getAddress', {
     databaseAction: DatabaseActions.getEncounterlessNode,
     wantedNode: '[:HAS_ADDRESS]-(address:Address)',
-    returnNode: 'address.address',
-    detailNode: '.address',
+    returnNode: 'address',
+    detailNode: 'address',
   }],
   ['getPatientAddresses', {
     databaseAction: DatabaseActions.getEncounterlessVal,

@@ -15,7 +15,7 @@ export class ConstantsService implements Constants {
   }
 
   get SERVER_PORT(): number {
-    return parseInt(process.env?.SERVER_PORT ?? '3000');
+    return parseInt(process.env?.SERVER_PORT ?? '5000');
   }
 
   get ENV(): string {
