@@ -24,6 +24,6 @@ jobs:
           LUIS_KEY: ${{ secrets.LUIS_KEY }}
         run: npm run test:backend
       - name: Start server
-        run: npm run start:backend &
+        run: npm run start &
       - name: Run E2E tests
         run: npm run test:frontend
