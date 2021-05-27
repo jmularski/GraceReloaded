@@ -11,6 +11,7 @@ export const MessageBox = style.div<MessageDivProps>`
         isBotMessage ? theme.botMessages : theme.userMessages };
     color: ${({isBotMessage}) =>
         isBotMessage ? 'black' : 'white' };
+    box-shadow: 2px 2px 3px rgba(0,0,0,0.15);
     min-width: 3vw;
     max-width: 25vw;
     border-radius: 10px;
