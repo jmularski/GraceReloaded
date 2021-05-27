@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import {EntityKeys} from '@Services/luis/luis.interface';
-import {NodeProperties} from '@Common/database/database.interface'
+import {NodeProperties} from '@Common/database/database.interface';
 
 export interface NodeGetters {
     databaseAction: DatabaseActions;
@@ -23,31 +23,31 @@ export const nodeConstants = new Map<string, NodeGetters>([
     databaseAction: DatabaseActions.getNode,
     wantedNode: '[:HAS_DRUG]-(drug:Drug)',
     returnNode: 'drug',
-    detailNode: 'description'
+    detailNode: 'description',
   }],
   ['getAllergies', {
     databaseAction: DatabaseActions.getNode,
     wantedNode: '[:HAS_ALLERGY]-(allergy:Allergy)',
     returnNode: 'allergy',
-    detailNode: 'description'
+    detailNode: 'description',
   }],
   ['getCarePlan', {
     databaseAction: DatabaseActions.getNode,
     wantedNode: '[:HAS_CARE_PLAN]-(careplan:CarePlan)',
     returnNode: 'carePlan',
-    detailNode: 'description'
+    detailNode: 'description',
   }],
   ['getProcedures', {
     databaseAction: DatabaseActions.getNode,
     wantedNode: '[:HAS_PROCEDURE]-(procedure:Procedure)',
     returnNode: 'procedure',
-    detailNode: 'description'
+    detailNode: 'description',
   }],
   ['getConditions', {
     databaseAction: DatabaseActions.getNode,
     wantedNode: '[:HAS_CONDITION]-(condition:Condition)',
     returnNode: 'condition',
-    detailNode: 'description'
+    detailNode: 'description',
   }],
   ['getAddress', {
     databaseAction: DatabaseActions.getEncounterlessNode,

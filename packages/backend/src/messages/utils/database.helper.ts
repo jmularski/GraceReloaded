@@ -20,43 +20,44 @@ export class DatabaseHelper implements Helper {
         entityNode,
       } = nodeGetters;
 
+      const dates = this.luisService.parseDate(entities);
       const name = this.luisService.parseNames(entities);
 
       switch (databaseAction) {
         case DatabaseActions.getNode:
           return await this.databaseService.getNode(
-              null,
+              dates,
               name[0],
               wantedNode,
               returnNode,
-              detailNode
+              detailNode,
           );
 
         case DatabaseActions.getVal:
           if (!entityNode) return null;
 
           return await this.databaseService.getVal(
-              null,
+              dates,
               this.luisService.parseEntityByKey(entities, entityNode),
               wantedNode,
               returnNode,
-              detailNode
+              detailNode,
           );
 
         case DatabaseActions.getEncounterlessNode:
           return await this.databaseService.getEncounterlessNode(
-              null,
+              dates,
               name[0],
               wantedNode,
               returnNode,
-              detailNode
+              detailNode,
           );
 
         case DatabaseActions.getEncounterlessVal:
           if (!detailNode || !entityNode) return null;
 
           return await this.databaseService.getEncounterlessVal(
-              null,
+              dates,
               this.luisService.parseEntityByKey(entities, entityNode),
               wantedNode,
               returnNode,
