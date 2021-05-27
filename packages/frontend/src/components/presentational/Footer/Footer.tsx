@@ -29,14 +29,15 @@ export const Footer = ({
   return (
     <FooterContainer elevation={3}>
       <FooterContent>
-        <Grid container>
-          <Grid item xs={10}>
+        <Grid container columns={20}>
+          <Grid item xs={12}>
             <MessageInput
               value={message}
               setValue={setMessage}
               sendMessage={sendMessageAndClearInput}
             />
           </Grid>
+          <Grid item xs={6} />
           <Grid item xs={1}>
             <Record toggleRecording={toggleRecording}/>
           </Grid>
