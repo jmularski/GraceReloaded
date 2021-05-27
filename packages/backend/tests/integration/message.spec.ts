@@ -20,6 +20,10 @@ const data = {
   getSame: {
     message: "what do cristina921 and emile522 have in common?",
     response: "The matching data for the patients is: Encounter for symptom, Self-care interventions (procedure), Loratadine 5 MG Chewable Tablet, NDA020800 0.3 ML Epinephrine 1 MG/ML Auto-Injector, Outpatient procedure, Encounter for problem, Body mass index 30+ - obesity (finding), Acute viral pharyngitis (disorder), Medication Reconciliation (procedure), Streptococcal sore throat (disorder), Encounter for check up (procedure), Encounter for symptom (procedure), Suspected COVID-19, Infectious disease care plan (record artifact), Face mask (physical object), Fever (finding), Cough (finding), COVID-19"
+  },
+  daterange: {
+    message: "what conditions did delinda651 have in the last month?",
+    response: "Delinda651 has no data related to any condition"
   }
 };
 
@@ -56,6 +60,13 @@ describe("Chat Events", () => {
 
   it("client should receive a correct answer when asking getSame question", async (done) => {
     const currentTestData = data['getSame'];
+    const result = await messageService.getMessages({id: 1, message: currentTestData.message});
+    expect(result).toEqual([currentTestData.response]);
+    done();
+  });
+
+  it("client should receive a correct answer when asking a question with daterange", async (done) => {
+    const currentTestData = data['daterange'];
     const result = await messageService.getMessages({id: 1, message: currentTestData.message});
     expect(result).toEqual([currentTestData.response]);
     done();

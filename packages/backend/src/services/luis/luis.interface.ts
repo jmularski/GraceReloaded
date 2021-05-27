@@ -13,7 +13,7 @@ export enum EntityKeys {
 }
 
 export type Entities = Partial<Record<EntityKeys, Array<Array<string>>> &
-    Record<'datetimeV2', DateTimeEntity | undefined>>;
+    Record<'datetimeV2', Array<DateTimeEntity> | undefined>>;
 
 export interface LuisDates {
     start: string,

@@ -56,16 +56,12 @@ export class LuisService implements Luis {
     }
 
     parseDate(entities: Entities): LuisDates | null {
-      const datesParsed = entities?.datetimeV2?.values() ?? null;
+      const datesParsed = entities?.datetimeV2?.[0]?.['values'] ?? null;
       if (!datesParsed) {
         return null;
       }
 
-      for (const date of datesParsed) {
-        return date.values[0].resolution[0];
-      }
-
-      return null;
+      return datesParsed?.[0].resolution?.[0] ?? null;
     };
 
     parseNames = (entities: Entities): string[] =>

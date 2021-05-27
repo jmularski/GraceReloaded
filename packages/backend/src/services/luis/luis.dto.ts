@@ -9,13 +9,11 @@ export interface Intent extends ResultItem {
 }
 
 interface DateResolution {
+    timex: string,
     resolution: Array<LuisDates>
 }
 
-interface DateValues {
-    values: Array<DateResolution>
-}
-
 export interface DateTimeEntity {
-    values(): DateValues[]
+    type: 'daterange',
+    values: Array<DateResolution>
 };
