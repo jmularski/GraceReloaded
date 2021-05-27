@@ -1,7 +1,7 @@
 import axios from 'axios';
 import {inject, injectable} from 'inversify';
-import {TYPES} from '../../common/di';
-import {Constants} from '../../common/constants';
+import {TYPES} from '@Common/di';
+import {Constants} from '@Common/constants';
 import {
   LuisResult,
   Luis,

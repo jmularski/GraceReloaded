@@ -1,7 +1,7 @@
 import {Server as SocketServer, Socket} from 'socket.io';
 import {Server} from 'http';
-import {MessageController} from './messages/message.controller';
-import {Message} from './models/Message';
+import {MessageController} from '@Messages/message.controller';
+import {Message} from '@Models/Message';
 
 const socketChannels = {
   USER_CHANNEL: 'chatMessage',

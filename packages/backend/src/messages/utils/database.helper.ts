@@ -1,7 +1,7 @@
-import {Database} from '../../common/database';
-import {container, TYPES} from '../../common/di';
-import {NodeGetters, DatabaseActions} from '../../common/constants/node.constants';
-import {Entities, Luis} from '../../services/luis/luis.interface';
+import {Database} from '@Common/database';
+import {container, TYPES} from '@Common/di';
+import {NodeGetters, DatabaseActions} from '@Common/constants/node.constants';
+import {Entities, Luis} from '@Services/luis/luis.interface';
 
 interface Helper {
     getDataFromUserQuery(nodeGetters: NodeGetters, entities: Entities): Promise<string[] | null>

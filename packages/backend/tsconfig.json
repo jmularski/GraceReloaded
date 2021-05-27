@@ -2,7 +2,11 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@App/*": ["src/*"]
+      "@App/*": ["src/*"],
+      "@Common/*": ["src/common/*"],
+      "@Messages/*": ["src/messages/*"],
+      "@Models/*": ["src/models/*"],
+      "@Services/*": ["src/services/*"]
     },
     "declaration": true,
     "module": "commonjs",

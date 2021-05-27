@@ -3,7 +3,7 @@ import {injectable, inject} from 'inversify';
 import {TYPES} from '../di';
 import {Constants} from '../constants';
 import {Logger} from '../logger';
-import {LuisDates} from '../../services/luis/luis.interface';
+import {LuisDates} from '@Services/luis/luis.interface';
 import {Database, NodeProperties, SameResults} from './database.interface';
 
 @injectable()

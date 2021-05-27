@@ -3,9 +3,9 @@ import * as cors from 'cors';
 import {inject, injectable} from 'inversify';
 import {createServer, Server} from 'http';
 import {SocketController} from './socket';
-import {TYPES} from './common/di';
-import {Constants} from './common/constants/constants.interface';
-import {Logger} from './common/logger';
+import {TYPES} from '@Common/di';
+import {Constants} from '@Common/constants';
+import {Logger} from '@Common/logger';
 
 @injectable()
 export class Application {

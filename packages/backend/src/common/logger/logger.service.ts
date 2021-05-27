@@ -1,7 +1,7 @@
 import {createLogger, Logger, format, transports} from 'winston';
 import {injectable, inject} from 'inversify';
-import {TYPES} from '../di';
-import {Constants} from '../constants/constants.interface';
+import {TYPES} from '@Common/di';
+import {Constants} from '@Common/constants';
 
 @injectable()
 export class LoggerService {

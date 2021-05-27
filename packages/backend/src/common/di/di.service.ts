@@ -2,11 +2,11 @@ import 'reflect-metadata';
 
 import {Container} from 'inversify';
 import {TYPES} from './types';
-import {Application} from '../../application';
-import {Constants, ConstantsService} from '../constants';
-import {Logger, LoggerService} from '../logger';
-import {Luis, LuisService} from '../../services/luis';
-import {Database, DatabaseService} from '../database';
+import {Application} from '@App/application';
+import {Constants, ConstantsService} from '@Common/constants';
+import {Logger, LoggerService} from '@Common/logger';
+import {Luis, LuisService} from '@Services/luis';
+import {Database, DatabaseService} from '@Common/database';
 
 const container = new Container();
 

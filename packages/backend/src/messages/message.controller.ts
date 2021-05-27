@@ -1,4 +1,4 @@
-import {Message} from '../models';
+import {Message} from '@Models/Message';
 import {MessageService} from './message.service';
 
 export class MessageController {
