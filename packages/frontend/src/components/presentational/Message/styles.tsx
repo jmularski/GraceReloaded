@@ -25,3 +25,7 @@ export const MessageContainer = style.div<MessageDivProps>`
     justify-content: ${({isBotMessage}) =>
         isBotMessage ? 'flex-start' : 'flex-end' };
 `;
+
+export const StyledText = style.p`
+    font-family: "Roboto";
+`;

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes, {InferProps} from 'prop-types';
-import {MessageBox, MessageContainer} from './styles';
+import {MessageBox, MessageContainer, StyledText} from './styles';
 
 export const Message = ({
   isBotMessage,
@@ -9,7 +9,9 @@ export const Message = ({
   return (
     <MessageContainer isBotMessage={isBotMessage}>
       <MessageBox isBotMessage={isBotMessage} className="message">
-        {text}
+        <StyledText>
+          {text}
+        </StyledText>
       </MessageBox>
     </MessageContainer>
   );
