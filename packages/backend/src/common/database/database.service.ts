@@ -146,7 +146,7 @@ export class DatabaseService implements Database {
 
       if (!result) return null;
 
-      return this.getWantedValuesFromResult(result, 'p', detailNode);
+      return this.getWantedValuesFromResult(result, 'p', 'firstName');
     }
 
     public async getSame(name: string, secondName: string, detailNode: string) {

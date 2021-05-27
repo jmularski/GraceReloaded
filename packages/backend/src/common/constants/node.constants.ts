@@ -59,7 +59,7 @@ export const nodeConstants = new Map<string, NodeGetters>([
     databaseAction: DatabaseActions.getEncounterlessVal,
     wantedNode: '[:HAS_ADDRESS]-(address:Address)',
     returnNode: 'address',
-    detailNode: 'firstName',
+    detailNode: 'address',
     entityNode: EntityKeys.DB_addressName,
   }],
   ['getPatientConditions', {
