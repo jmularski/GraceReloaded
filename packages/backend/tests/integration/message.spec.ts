@@ -1,9 +1,9 @@
 import { MessageService } from "@Messages/message.service";
 
-const data = [{
+const data = {
   message: "What patients have taken drug Loratadine 5 MG Chewable Tablet?",
   response: "The patients with this drug are: Cristina921, Emile522",
-}];
+};
 
 describe("Chat Events", () => {
   const messageService = new MessageService();
