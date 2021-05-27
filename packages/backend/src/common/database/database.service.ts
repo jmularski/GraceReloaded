@@ -72,7 +72,6 @@ export class DatabaseService implements Database {
         returnNode: string,
         detailNode: keyof NodeProperties
     ) {
-      console.log(dates)
       const result = await this.find(`
             MATCH (p:Patient{firstName:$name})
             MATCH (p)-[:HAS_ENCOUNTER]-(e:Encounter)

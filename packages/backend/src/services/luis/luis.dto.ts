@@ -14,6 +14,6 @@ interface DateResolution {
 }
 
 export interface DateTimeEntity {
-    type: 'daterange',
+    type: string,
     values: Array<DateResolution>
 };
